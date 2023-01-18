@@ -16,6 +16,17 @@ body {
     flex-direction: column;
 }
 
+button {
+    margin: 30px;
+    height: 60px;
+    width: 120px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    border-radius: 10px;
+    background-color: rgb(194, 194, 194);
+    
+}
+
 #etchASketch {
     background-color: rgb(197, 35, 35);
     height: 750px;
