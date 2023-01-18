@@ -1,0 +1,44 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: cadetblue;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+#buttonList {
+    margin: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+#etchASketch {
+    background-color: rgb(197, 35, 35);
+    height: 750px;
+    width: 750px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    margin-top: 60px;
+}
+
+#canvas {
+    background-color: rgb(126, 126, 126);
+    height: 640px;
+    width: 640px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.gridDiv {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(158, 158, 158);
+    box-sizing: border-box;
+}
+
