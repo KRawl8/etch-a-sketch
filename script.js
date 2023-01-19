@@ -1,6 +1,9 @@
 let gridDimension = 16;
 let newGridDimensions;
 let paintColor = "black";
+let isRainbow = false;
+let isShader = false;
+let opacity = 0;
 
 const grid = document.querySelector('#canvas');
 
@@ -33,19 +36,46 @@ buttonColor.forEach((button) => {
     button.addEventListener('click', () => {
         switch (button.id) {
             case "black":
-                paintColor = "blue";
+                paintColor = "black";
+                isRainbow = false;
+                isShader = false;
                 break;
             case "random":
                 paintColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+                isRainbow = false;
+                isShader = false;
+                break;
+            case "rainbow":
+                isRainbow = true;
+                isShader = false;
+                break;
+            case "shader":
+                isShader = true;
+                isRainbow = false;
                 break;
         }
     })
 }
 );
 
+function shaderPaint(e) {
+    opacity += 0.05;
+    // console.log(paintColor);
+    e.currentTarget.style.backgroundColor = `rgba(0, 0, 0, ${opacity + 0.05})`;
+    e.currentTarget.style.borderColor = `rgba(0, 0, 0, ${opacity + 0.05})`;
+}
+
 const paint = (e) => {
-    e.currentTarget.style.backgroundColor = paintColor;
-    e.currentTarget.style.borderColor = paintColor;
+    if (isRainbow === true) {
+        paintColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+        e.currentTarget.style.backgroundColor = paintColor;
+        e.currentTarget.style.borderColor = paintColor;
+    } else if (isShader === true) {
+        e.currentTarget.style.backgroundColor = shaderPaint(e);
+    } else {
+        e.currentTarget.style.backgroundColor = paintColor;
+        e.currentTarget.style.borderColor = paintColor;
+    }
 };
 
 const gridButton = document.querySelector('#gridDimensions'); // When user clicks the button they choose the new value for gridDimension
