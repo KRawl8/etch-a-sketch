@@ -3,7 +3,6 @@ let newGridDimensions;
 let paintColor = "black";
 let isRainbow = false;
 let isShader = false;
-let opacity = 0;
 
 const grid = document.querySelector('#canvas');
 
@@ -58,21 +57,21 @@ buttonColor.forEach((button) => {
 }
 );
 
-function shaderPaint(e) {
-    opacity += 0.05;
-    // console.log(paintColor);
-    e.currentTarget.style.backgroundColor = `rgba(0, 0, 0, ${opacity + 0.05})`;
-    e.currentTarget.style.borderColor = `rgba(0, 0, 0, ${opacity + 0.05})`;
-}
-
-const paint = (e) => {
+const paint = (e) => { // When each box is hoveredd over, this function is called
     if (isRainbow === true) {
         paintColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
         e.currentTarget.style.backgroundColor = paintColor;
         e.currentTarget.style.borderColor = paintColor;
+        e.currentTarget.style.opacity = 1;
     } else if (isShader === true) {
-        e.currentTarget.style.backgroundColor = shaderPaint(e);
+        if (e.currentTarget.style.backgroundColor != "black") {
+            e.currentTarget.style.opacity = 0;
+        }
+        e.currentTarget.style.backgroundColor = "black";
+        e.currentTarget.style.borderColor = "black";
+        e.currentTarget.style.opacity = Number(e.currentTarget.style.opacity) + 0.1;
     } else {
+        e.currentTarget.style.opacity = 1;
         e.currentTarget.style.backgroundColor = paintColor;
         e.currentTarget.style.borderColor = paintColor;
     }
